@@ -46,21 +46,7 @@ const config: Config = {
           editUrl:
             'https://github.com/JDoro/codegen-resources/tree/main/website/',
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/JDoro/codegen-resources/tree/main/website/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
+        blog: false,
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -88,7 +74,6 @@ const config: Config = {
           label: 'Research',
         },
         {to: '/products', label: 'Products', position: 'left'},
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/JDoro/codegen-resources',
           label: 'GitHub',
@@ -118,15 +103,6 @@ const config: Config = {
             {
               label: 'GitHub',
               href: 'https://github.com/JDoro/codegen-resources',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Blog',
-              to: '/blog',
             },
           ],
         },
