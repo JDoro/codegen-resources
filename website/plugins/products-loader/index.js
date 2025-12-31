@@ -19,17 +19,26 @@ module.exports = function productsLoaderPlugin(context, options) {
       const products = [];
       
       for (const file of files) {
-        if (file.endsWith('.md')) {
-          const filePath = path.join(productsDir, file);
-          const fileContent = fs.readFileSync(filePath, 'utf-8');
-          const { data, content } = matter(fileContent);
-          
-          products.push({
-            ...data,
-            content,
-            slug: file.replace('.md', '')
-          });
+        // Skip README and non-markdown files
+        if (file === 'README.md' || !file.endsWith('.md')) {
+          continue;
         }
+        
+        const filePath = path.join(productsDir, file);
+        const fileContent = fs.readFileSync(filePath, 'utf-8');
+        const { data, content } = matter(fileContent);
+        
+        // Validate required fields
+        if (!data.id || !data.name || !data.company) {
+          console.warn(`Skipping ${file}: missing required fields (id, name, or company)`);
+          continue;
+        }
+        
+        products.push({
+          ...data,
+          content,
+          slug: file.replace('.md', '')
+        });
       }
       
       return products;
