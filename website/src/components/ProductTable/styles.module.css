@@ -1,0 +1,243 @@
+.productTableContainer {
+  margin: 2rem 0;
+  width: 100%;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  background: var(--ifm-background-surface-color);
+  border-radius: 8px;
+  border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 200px;
+}
+
+.filterGroup label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.searchInput,
+.filterSelect {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 4px;
+  background: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+}
+
+.searchInput:focus,
+.filterSelect:focus {
+  outline: none;
+  border-color: var(--ifm-color-primary);
+}
+
+.resultsInfo {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-600);
+  font-weight: 500;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+}
+
+.productTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.productTable thead {
+  background: var(--ifm-color-emphasis-100);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.productTable th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-800);
+  border-bottom: 2px solid var(--ifm-color-emphasis-300);
+  white-space: nowrap;
+}
+
+.productTable th.sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s;
+}
+
+.productTable th.sortable:hover {
+  background: var(--ifm-color-emphasis-200);
+}
+
+.productTable td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  vertical-align: top;
+}
+
+.productTable tbody tr {
+  transition: background-color 0.2s;
+}
+
+.productTable tbody tr:hover {
+  background: var(--ifm-color-emphasis-50);
+}
+
+.productName {
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+  white-space: nowrap;
+}
+
+.description {
+  max-width: 300px;
+  line-height: 1.5;
+}
+
+.centered {
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badgeFree {
+  background: #d4edda;
+  color: #155724;
+}
+
+.badgeFreemium {
+  background: #d1ecf1;
+  color: #0c5460;
+}
+
+.badgePaid {
+  background: #fff3cd;
+  color: #856404;
+}
+
+html[data-theme='dark'] .badgeFree {
+  background: #1e4620;
+  color: #a3e3a8;
+}
+
+html[data-theme='dark'] .badgeFreemium {
+  background: #0d3d47;
+  color: #8dd9e8;
+}
+
+html[data-theme='dark'] .badgePaid {
+  background: #574200;
+  color: #ffd966;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  background: var(--ifm-color-emphasis-200);
+  color: var(--ifm-color-emphasis-800);
+  border-radius: 4px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.tagNone {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  color: var(--ifm-color-emphasis-600);
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+.websiteLink {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.websiteLink:hover {
+  color: var(--ifm-color-primary-dark);
+  text-decoration: underline;
+}
+
+.noResults {
+  padding: 3rem;
+  text-align: center;
+  color: var(--ifm-color-emphasis-600);
+  font-size: 1.1rem;
+}
+
+@media (max-width: 996px) {
+  .filters {
+    flex-direction: column;
+  }
+  
+  .filterGroup {
+    min-width: 100%;
+  }
+
+  .productTable {
+    font-size: 0.85rem;
+  }
+
+  .productTable th,
+  .productTable td {
+    padding: 0.75rem;
+  }
+
+  .description {
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .productTable {
+    font-size: 0.8rem;
+  }
+
+  .productTable th,
+  .productTable td {
+    padding: 0.5rem;
+  }
+
+  .description {
+    max-width: 150px;
+  }
+}
