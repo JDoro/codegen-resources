@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import styles from './styles.module.css';
-import { Product } from '../../data/products';
+import { Product } from '../../types/product';
 
 interface ProductTableProps {
   products: Product[];
@@ -21,7 +21,9 @@ export default function ProductTable({ products }: ProductTableProps): JSX.Eleme
   const allIDEs = useMemo(() => {
     const ideSet = new Set<string>();
     products.forEach(product => {
-      product.supportedIDEs.forEach(ide => ideSet.add(ide));
+      if (product.supportedIDEs && Array.isArray(product.supportedIDEs)) {
+        product.supportedIDEs.forEach(ide => ideSet.add(ide));
+      }
     });
     return Array.from(ideSet).sort();
   }, [products]);
@@ -38,7 +40,7 @@ export default function ProductTable({ products }: ProductTableProps): JSX.Eleme
       // IDE filter
       const matchesIDE = 
         filterIDE === 'all' || 
-        product.supportedIDEs.some(ide => ide === filterIDE);
+        (product.supportedIDEs && product.supportedIDEs.some(ide => ide === filterIDE));
 
       // Pricing filter
       const matchesPricing = 
