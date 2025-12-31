@@ -6,14 +6,13 @@ interface ProductTableProps {
   products: Product[];
 }
 
-type SortField = 'name' | 'company' | 'pricing' | 'hasIDEExtension';
+type SortField = 'name' | 'company' | 'pricing';
 type SortDirection = 'asc' | 'desc';
 
 export default function ProductTable({ products }: ProductTableProps): JSX.Element {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterIDE, setFilterIDE] = useState<string>('all');
   const [filterPricing, setFilterPricing] = useState<string>('all');
-  const [filterHasExtension, setFilterHasExtension] = useState<string>('all');
   const [sortField, setSortField] = useState<SortField>('name');
   const [sortDirection, setSortDirection] = useState<SortDirection>('asc');
 
@@ -47,24 +46,13 @@ export default function ProductTable({ products }: ProductTableProps): JSX.Eleme
         filterPricing === 'all' || 
         product.pricing === filterPricing;
 
-      // Has extension filter
-      const matchesExtension = 
-        filterHasExtension === 'all' || 
-        (filterHasExtension === 'yes' && product.hasIDEExtension) ||
-        (filterHasExtension === 'no' && !product.hasIDEExtension);
-
-      return matchesSearch && matchesIDE && matchesPricing && matchesExtension;
+      return matchesSearch && matchesIDE && matchesPricing;
     });
 
     // Sort
     filtered.sort((a, b) => {
       let aValue: any = a[sortField];
       let bValue: any = b[sortField];
-
-      if (sortField === 'hasIDEExtension') {
-        aValue = aValue ? 1 : 0;
-        bValue = bValue ? 1 : 0;
-      }
 
       if (typeof aValue === 'string') {
         aValue = aValue.toLowerCase();
@@ -77,7 +65,7 @@ export default function ProductTable({ products }: ProductTableProps): JSX.Eleme
     });
 
     return filtered;
-  }, [products, searchTerm, filterIDE, filterPricing, filterHasExtension, sortField, sortDirection]);
+  }, [products, searchTerm, filterIDE, filterPricing, sortField, sortDirection]);
 
   const handleSort = (field: SortField) => {
     if (sortField === field) {
@@ -137,20 +125,6 @@ export default function ProductTable({ products }: ProductTableProps): JSX.Eleme
             <option value="Paid">Paid</option>
           </select>
         </div>
-
-        <div className={styles.filterGroup}>
-          <label htmlFor="extensionFilter">Has Extension:</label>
-          <select
-            id="extensionFilter"
-            value={filterHasExtension}
-            onChange={(e) => setFilterHasExtension(e.target.value)}
-            className={styles.filterSelect}
-          >
-            <option value="all">All</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-          </select>
-        </div>
       </div>
 
       <div className={styles.resultsInfo}>
@@ -171,9 +145,6 @@ export default function ProductTable({ products }: ProductTableProps): JSX.Eleme
               <th onClick={() => handleSort('pricing')} className={styles.sortable}>
                 Pricing{getSortIndicator('pricing')}
               </th>
-              <th onClick={() => handleSort('hasIDEExtension')} className={styles.sortable}>
-                IDE Extension{getSortIndicator('hasIDEExtension')}
-              </th>
               <th>Supported IDEs</th>
               <th>Languages</th>
               <th>Features</th>
@@ -190,9 +161,6 @@ export default function ProductTable({ products }: ProductTableProps): JSX.Eleme
                   <span className={`${styles.badge} ${styles[`badge${product.pricing}`]}`}>
                     {product.pricing}
                   </span>
-                </td>
-                <td className={styles.centered}>
-                  {product.hasIDEExtension ? '✓' : '✗'}
                 </td>
                 <td>
                   <div className={styles.tags}>
