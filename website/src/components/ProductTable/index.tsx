@@ -1,4 +1,6 @@
 import React, { useState, useMemo } from 'react';
+import type { ReactNode } from 'react';
+import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
 import { Product } from '../../types/product';
 
@@ -9,7 +11,7 @@ interface ProductTableProps {
 type SortField = 'name' | 'company' | 'pricing';
 type SortDirection = 'asc' | 'desc';
 
-export default function ProductTable({ products }: ProductTableProps): JSX.Element {
+export default function ProductTable({ products }: ProductTableProps): ReactNode {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterIDE, setFilterIDE] = useState<string>('all');
   const [filterPricing, setFilterPricing] = useState<string>('all');
@@ -154,7 +156,11 @@ export default function ProductTable({ products }: ProductTableProps): JSX.Eleme
           <tbody>
             {filteredAndSortedProducts.map(product => (
               <tr key={product.id}>
-                <td className={styles.productName}>{product.name}</td>
+                <td className={styles.productName}>
+                  <Link to={`/products/${product.slug}`} className={styles.productNameLink}>
+                    {product.name}
+                  </Link>
+                </td>
                 <td>{product.company}</td>
                 <td className={styles.description}>{product.description}</td>
                 <td>

@@ -1,11 +1,12 @@
 import React from 'react';
+import type { ReactNode } from 'react';
 import Layout from '@theme/Layout';
 import ProductTable from '@site/src/components/ProductTable';
 import { usePluginData } from '@docusaurus/useGlobalData';
 import type { Product } from '@site/src/types/product';
 import styles from './products.module.css';
 
-export default function Products(): JSX.Element {
+export default function Products(): ReactNode {
   const { products } = usePluginData('products-loader') as { products: Product[] };
   
   return (

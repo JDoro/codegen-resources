@@ -45,8 +45,25 @@ module.exports = function productsLoaderPlugin(context, options) {
     },
     
     async contentLoaded({ content, actions }) {
-      const { setGlobalData } = actions;
+      const { setGlobalData, createData, addRoute } = actions;
       setGlobalData({ products: content });
+      
+      // Create individual product pages
+      for (const product of content) {
+        const productJsonPath = await createData(
+          `product-${product.slug}.json`,
+          JSON.stringify(product)
+        );
+        
+        addRoute({
+          path: `${context.baseUrl}products/${product.slug}`,
+          component: '@site/src/components/ProductPage/index.tsx',
+          exact: true,
+          modules: {
+            product: productJsonPath,
+          },
+        });
+      }
     }
   };
 };
