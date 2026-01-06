@@ -5,8 +5,11 @@ import Link from '@docusaurus/Link';
 import type { Product } from '@site/src/types/product';
 import styles from './styles.module.css';
 
-export default function ProductPage(props): ReactNode {
-  const product: Product = props.product;
+interface ProductPageProps {
+  product: Product;
+}
+
+export default function ProductPage({ product }: ProductPageProps): ReactNode {
   
   if (!product) {
     return (
@@ -95,35 +98,80 @@ export default function ProductPage(props): ReactNode {
             <div className={styles.section}>
               <div className={styles.content}>
                 {/* Convert markdown headers and lists to basic HTML */}
-                {product.content.split('\n').map((line, idx) => {
-                  // Headers
-                  if (line.startsWith('## ')) {
-                    return <h2 key={idx}>{line.substring(3)}</h2>;
-                  } else if (line.startsWith('# ')) {
-                    return <h1 key={idx}>{line.substring(2)}</h1>;
-                  } 
-                  // List items
-                  else if (line.startsWith('- ')) {
-                    return <li key={idx}>{line.substring(2)}</li>;
-                  }
-                  // Bold text (simple pattern)
-                  else if (line.includes('**')) {
-                    const parts = line.split('**');
-                    return (
-                      <p key={idx}>
-                        {parts.map((part, i) => 
-                          i % 2 === 0 ? part : <strong key={i}>{part}</strong>
-                        )}
-                      </p>
+                {(() => {
+                  const lines = product.content.split('\n');
+                  const elements: ReactNode[] = [];
+                  let listBuffer: ReactNode[] = [];
+                  let listStartIdx = -1;
+
+                  lines.forEach((line, idx) => {
+                    const trimmed = line.trim();
+
+                    // Handle list items: buffer them to wrap in a <ul>
+                    if (line.startsWith('- ')) {
+                      if (listBuffer.length === 0) {
+                        listStartIdx = idx;
+                      }
+                      const listContent = line.substring(2);
+                      listBuffer.push(
+                        <li key={`li-${idx}-${listContent.substring(0, 20)}`}>{listContent}</li>
+                      );
+                      return;
+                    }
+
+                    // If we reach a non-list line and have buffered list items, flush them
+                    if (listBuffer.length > 0) {
+                      elements.push(
+                        <ul key={`list-${listStartIdx}`}>{listBuffer}</ul>
+                      );
+                      listBuffer = [];
+                      listStartIdx = -1;
+                    }
+
+                    // Headers
+                    if (line.startsWith('## ')) {
+                      const headerContent = line.substring(3);
+                      elements.push(
+                        <h2 key={`h2-${idx}-${headerContent.substring(0, 20)}`}>{headerContent}</h2>
+                      );
+                    } else if (line.startsWith('# ')) {
+                      const headerContent = line.substring(2);
+                      elements.push(
+                        <h1 key={`h1-${idx}-${headerContent.substring(0, 20)}`}>{headerContent}</h1>
+                      );
+                    }
+                    // Bold text (simple pattern)
+                    else if (line.includes('**')) {
+                      const parts = line.split('**');
+                      elements.push(
+                        <p key={`p-bold-${idx}-${trimmed.substring(0, 20)}`}>
+                          {parts.map((part, partIdx) =>
+                            partIdx % 2 === 0
+                              ? part
+                              : <strong key={`strong-${idx}-${partIdx}-${part.substring(0, 10)}`}>{part}</strong>
+                          )}
+                        </p>
+                      );
+                    }
+                    // Regular paragraph
+                    else if (trimmed) {
+                      elements.push(<p key={`p-${idx}-${trimmed.substring(0, 20)}`}>{line}</p>);
+                    }
+                    // Empty line
+                    else {
+                      elements.push(<br key={`br-${idx}`} />);
+                    }
+                  });
+
+                  // Flush any remaining buffered list items at the end
+                  if (listBuffer.length > 0) {
+                    elements.push(
+                      <ul key={`list-end-${listStartIdx}`}>{listBuffer}</ul>
                     );
                   }
-                  // Regular paragraph
-                  else if (line.trim()) {
-                    return <p key={idx}>{line}</p>;
-                  }
-                  // Empty line
-                  return <br key={idx} />;
-                })}
+
+                  return elements;
+                })()}
               </div>
             </div>
           )}

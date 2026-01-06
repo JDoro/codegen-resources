@@ -50,6 +50,12 @@ module.exports = function productsLoaderPlugin(context, options) {
       
       // Create individual product pages
       for (const product of content) {
+        // Validate slug exists before creating route
+        if (!product.slug) {
+          console.warn(`Skipping route creation for product ${product.id}: missing slug`);
+          continue;
+        }
+        
         const productJsonPath = await createData(
           `product-${product.slug}.json`,
           JSON.stringify(product)

@@ -157,9 +157,13 @@ export default function ProductTable({ products }: ProductTableProps): ReactNode
             {filteredAndSortedProducts.map(product => (
               <tr key={product.id}>
                 <td className={styles.productName}>
-                  <Link to={`/products/${product.slug}`} className={styles.productNameLink}>
-                    {product.name}
-                  </Link>
+                  {product.slug ? (
+                    <Link to={`/products/${product.slug}`} className={styles.productNameLink}>
+                      {product.name}
+                    </Link>
+                  ) : (
+                    <span className={styles.productNameLink}>{product.name}</span>
+                  )}
                 </td>
                 <td>{product.company}</td>
                 <td className={styles.description}>{product.description}</td>
