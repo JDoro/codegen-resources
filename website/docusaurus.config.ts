@@ -71,7 +71,6 @@ const config: Config = {
         src: 'img/logo.svg',
       },
       items: [
-        {to: '/products', label: 'Products', position: 'left'},
         {
           href: 'https://github.com/JDoro/codegen-resources',
           label: 'GitHub',
@@ -82,15 +81,6 @@ const config: Config = {
     footer: {
       style: 'dark',
       links: [
-        {
-          title: 'Resources',
-          items: [
-            {
-              label: 'Products',
-              to: '/products',
-            },
-          ],
-        },
         {
           title: 'Community',
           items: [
