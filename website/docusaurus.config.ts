@@ -6,7 +6,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'AI Code Generation Resources',
-  tagline: 'Research and resources on AI code generation tools and products',
+  tagline: 'Compare and explore AI code generation tools and products',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
