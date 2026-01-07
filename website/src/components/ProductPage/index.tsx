@@ -18,7 +18,7 @@ export default function ProductPage({ product }: ProductPageProps): ReactNode {
           <div className="container">
             <h1>Product Not Found</h1>
             <p>The product you're looking for doesn't exist.</p>
-            <Link to="/products">← Back to Products</Link>
+            <Link to="/">← Back to Products</Link>
           </div>
         </main>
       </Layout>
@@ -32,7 +32,7 @@ export default function ProductPage({ product }: ProductPageProps): ReactNode {
       <main className={styles.productPage}>
         <div className="container">
           <div className={styles.breadcrumb}>
-            <Link to="/products">← Back to Products</Link>
+            <Link to="/">← Back to Products</Link>
           </div>
           
           <div className={styles.header}>
