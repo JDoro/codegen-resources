@@ -1,13 +1,12 @@
 # AI Code Generation Resources
 
-A comprehensive wiki for research and resources on AI code generation tools and products.
+A comprehensive database of AI code generation tools and products.
 
 ## Features
 
 - **Filterable Product Database**: Browse and compare 10+ AI code generation tools
 - **Advanced Filtering**: Filter by IDE support, pricing model, and extension availability
 - **Sorting**: Sort products by name, company, pricing, or IDE extension
-- **Research & Documentation**: Curated resources about AI code generation
 
 ## Quick Start
 

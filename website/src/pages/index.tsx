@@ -1,48 +1,28 @@
-import type {ReactNode} from 'react';
-import clsx from 'clsx';
-import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import React from 'react';
+import type { ReactNode } from 'react';
 import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
-import Heading from '@theme/Heading';
-
+import ProductTable from '@site/src/components/ProductTable';
+import { usePluginData } from '@docusaurus/useGlobalData';
+import type { Product } from '@site/src/types/product';
 import styles from './index.module.css';
 
-function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
-  return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/products">
-            Explore AI Tools 🚀
-          </Link>
-          <Link
-            className="button button--outline button--secondary button--lg"
-            to="/docs/intro">
-            Read Research 📚
-          </Link>
-        </div>
-      </div>
-    </header>
-  );
-}
-
 export default function Home(): ReactNode {
-  const {siteConfig} = useDocusaurusContext();
+  const { products } = usePluginData('products-loader') as { products: Product[] };
+  
   return (
     <Layout
-      title={siteConfig.title}
-      description="Research and resources on AI code generation tools and products">
-      <HomepageHeader />
-      <main>
-        <HomepageFeatures />
+      title="AI Code Generation Products"
+      description="A comprehensive list of AI code generation tools and products with filtering and sorting capabilities">
+      <main className={styles.productsPage}>
+        <div className="container">
+          <div className={styles.header}>
+            <h1>AI Code Generation Products</h1>
+            <p className={styles.subtitle}>
+              Explore and compare AI-powered code generation tools. Filter by IDE support, pricing, and more.
+            </p>
+          </div>
+          <ProductTable products={products} />
+        </div>
       </main>
     </Layout>
   );

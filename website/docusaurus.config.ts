@@ -6,7 +6,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'AI Code Generation Resources',
-  tagline: 'Research and resources on AI code generation tools and products',
+  tagline: 'Compare and explore AI code generation tools and products',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -72,13 +72,6 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Research',
-        },
-        {to: '/products', label: 'Products', position: 'left'},
-        {
           href: 'https://github.com/JDoro/codegen-resources',
           label: 'GitHub',
           position: 'right',
@@ -88,19 +81,6 @@ const config: Config = {
     footer: {
       style: 'dark',
       links: [
-        {
-          title: 'Resources',
-          items: [
-            {
-              label: 'Research',
-              to: '/docs/intro',
-            },
-            {
-              label: 'Products',
-              to: '/products',
-            },
-          ],
-        },
         {
           title: 'Community',
           items: [

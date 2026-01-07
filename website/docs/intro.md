@@ -29,7 +29,7 @@ AI code generation tools are transforming software development by:
 
 ### Browse Products
 
-Visit the [Products](/products) page to explore a comprehensive, filterable table of AI code generation tools. You can:
+Visit the [Products](/) page to explore a comprehensive, filterable table of AI code generation tools. You can:
 
 - Filter by IDE support
 - Compare pricing models
@@ -47,7 +47,7 @@ Browse our documentation to learn about:
 
 ## Getting Started
 
-1. Check out the [Products](/products) page to find tools that match your needs
+1. Check out the [Products](/) page to find tools that match your needs
 2. Explore the documentation to understand how these tools work
 3. Try out different tools to find what works best for your workflow
 
