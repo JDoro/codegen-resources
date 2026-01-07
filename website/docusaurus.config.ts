@@ -71,12 +71,6 @@ const config: Config = {
         src: 'img/logo.svg',
       },
       items: [
-        {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Research',
-        },
         {to: '/products', label: 'Products', position: 'left'},
         {
           href: 'https://github.com/JDoro/codegen-resources',
@@ -91,10 +85,6 @@ const config: Config = {
         {
           title: 'Resources',
           items: [
-            {
-              label: 'Research',
-              to: '/docs/intro',
-            },
             {
               label: 'Products',
               to: '/products',
