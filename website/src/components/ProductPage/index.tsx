@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import type { Product } from '@site/src/types/product';
+import ReactMarkdown from 'react-markdown';
 import styles from './styles.module.css';
 
 interface ProductPageProps {
@@ -97,91 +98,7 @@ export default function ProductPage({ product }: ProductPageProps): ReactNode {
           {product.content && (
             <div className={styles.section}>
               <div className={styles.content}>
-                {/* Convert markdown headers and lists to basic HTML */}
-                {(() => {
-                  const lines = product.content.split('\n');
-                  const elements: ReactNode[] = [];
-                  let listBuffer: ReactNode[] = [];
-                  let listStartIdx = -1;
-
-                  // Helper function to process inline markdown (bold text)
-                  const processInlineMarkdown = (text: string, keyPrefix: string): ReactNode => {
-                    if (text.includes('**')) {
-                      const parts = text.split('**');
-                      return (
-                        <>
-                          {parts.map((part, partIdx) =>
-                            partIdx % 2 === 0
-                              ? part
-                              : <strong key={`${keyPrefix}-strong-${partIdx}-${part.substring(0, 10)}`}>{part}</strong>
-                          )}
-                        </>
-                      );
-                    }
-                    return text;
-                  };
-
-                  lines.forEach((line, idx) => {
-                    const trimmed = line.trim();
-
-                    // Handle list items: buffer them to wrap in a <ul>
-                    if (line.startsWith('- ')) {
-                      if (listBuffer.length === 0) {
-                        listStartIdx = idx;
-                      }
-                      const listContent = line.substring(2);
-                      listBuffer.push(
-                        <li key={`li-${idx}-${listContent.substring(0, 20)}`}>
-                          {processInlineMarkdown(listContent, `li-${idx}`)}
-                        </li>
-                      );
-                      return;
-                    }
-
-                    // If we reach a non-list line and have buffered list items, flush them
-                    if (listBuffer.length > 0) {
-                      elements.push(
-                        <ul key={`list-${listStartIdx}`}>{listBuffer}</ul>
-                      );
-                      listBuffer = [];
-                      listStartIdx = -1;
-                    }
-
-                    // Headers
-                    if (line.startsWith('## ')) {
-                      const headerContent = line.substring(3);
-                      elements.push(
-                        <h2 key={`h2-${idx}-${headerContent.substring(0, 20)}`}>{headerContent}</h2>
-                      );
-                    } else if (line.startsWith('# ')) {
-                      const headerContent = line.substring(2);
-                      elements.push(
-                        <h1 key={`h1-${idx}-${headerContent.substring(0, 20)}`}>{headerContent}</h1>
-                      );
-                    }
-                    // Regular paragraph (with inline markdown processing)
-                    else if (trimmed) {
-                      elements.push(
-                        <p key={`p-${idx}-${trimmed.substring(0, 20)}`}>
-                          {processInlineMarkdown(line, `p-${idx}`)}
-                        </p>
-                      );
-                    }
-                    // Empty line
-                    else {
-                      elements.push(<br key={`br-${idx}`} />);
-                    }
-                  });
-
-                  // Flush any remaining buffered list items at the end
-                  if (listBuffer.length > 0) {
-                    elements.push(
-                      <ul key={`list-end-${listStartIdx}`}>{listBuffer}</ul>
-                    );
-                  }
-
-                  return elements;
-                })()}
+                <ReactMarkdown>{product.content}</ReactMarkdown>
               </div>
             </div>
           )}
