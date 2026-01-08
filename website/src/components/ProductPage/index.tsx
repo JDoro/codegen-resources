@@ -104,6 +104,23 @@ export default function ProductPage({ product }: ProductPageProps): ReactNode {
                   let listBuffer: ReactNode[] = [];
                   let listStartIdx = -1;
 
+                  // Helper function to process inline markdown (bold text)
+                  const processInlineMarkdown = (text: string, keyPrefix: string): ReactNode => {
+                    if (text.includes('**')) {
+                      const parts = text.split('**');
+                      return (
+                        <>
+                          {parts.map((part, partIdx) =>
+                            partIdx % 2 === 0
+                              ? part
+                              : <strong key={`${keyPrefix}-strong-${partIdx}-${part.substring(0, 10)}`}>{part}</strong>
+                          )}
+                        </>
+                      );
+                    }
+                    return text;
+                  };
+
                   lines.forEach((line, idx) => {
                     const trimmed = line.trim();
 
@@ -114,7 +131,9 @@ export default function ProductPage({ product }: ProductPageProps): ReactNode {
                       }
                       const listContent = line.substring(2);
                       listBuffer.push(
-                        <li key={`li-${idx}-${listContent.substring(0, 20)}`}>{listContent}</li>
+                        <li key={`li-${idx}-${listContent.substring(0, 20)}`}>
+                          {processInlineMarkdown(listContent, `li-${idx}`)}
+                        </li>
                       );
                       return;
                     }
@@ -140,22 +159,13 @@ export default function ProductPage({ product }: ProductPageProps): ReactNode {
                         <h1 key={`h1-${idx}-${headerContent.substring(0, 20)}`}>{headerContent}</h1>
                       );
                     }
-                    // Bold text (simple pattern)
-                    else if (line.includes('**')) {
-                      const parts = line.split('**');
+                    // Regular paragraph (with inline markdown processing)
+                    else if (trimmed) {
                       elements.push(
-                        <p key={`p-bold-${idx}-${trimmed.substring(0, 20)}`}>
-                          {parts.map((part, partIdx) =>
-                            partIdx % 2 === 0
-                              ? part
-                              : <strong key={`strong-${idx}-${partIdx}-${part.substring(0, 10)}`}>{part}</strong>
-                          )}
+                        <p key={`p-${idx}-${trimmed.substring(0, 20)}`}>
+                          {processInlineMarkdown(line, `p-${idx}`)}
                         </p>
                       );
-                    }
-                    // Regular paragraph
-                    else if (trimmed) {
-                      elements.push(<p key={`p-${idx}-${trimmed.substring(0, 20)}`}>{line}</p>);
                     }
                     // Empty line
                     else {
