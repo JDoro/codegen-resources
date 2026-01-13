@@ -12,9 +12,6 @@ pricing: Freemium
 language:
   - JavaScript
   - TypeScript
-  - React
-  - Vue
-  - Angular
 features:
   - Full-stack app generation
   - Visual editor

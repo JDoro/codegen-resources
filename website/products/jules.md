@@ -3,7 +3,7 @@ id: jules
 name: Jules
 company: Google
 description: Autonomous AI coding agent that creates pull requests asynchronously
-website: https://jules.google
+website: https://jules.google.com
 hasIDEExtension: false
 supportedIDEs:
   - GitHub Integration (Web-based)
@@ -41,10 +41,10 @@ Jules is Google's autonomous AI coding agent that works asynchronously in secure
 
 ## Pricing
 
-Jules offers three pricing tiers:
+Jules is available on the free Jules tier and is also included with the following Google AI subscription plans:
 
-- **Free**: Up to 15 daily tasks and 3 concurrent tasks
-- **Google AI Pro**: $19.99/month - 5x free tier limits (75 daily tasks, 15 concurrent)
-- **Google AI Ultra**: $124.99/month - 20x free tier limits (300 daily tasks, 60 concurrent)
+- **Free (Jules)**: Up to 15 daily tasks and 3 concurrent tasks
+- **Google AI Pro (includes Jules)**: $19.99/month - 5x free tier limits (75 daily tasks, 15 concurrent)
+- **Google AI Ultra (includes Jules)**: $124.99/month - 20x free tier limits (300 daily tasks, 60 concurrent)
 
 Ideal for large codebase updates, automated PRs, and workflow automation.

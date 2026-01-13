@@ -1,7 +1,7 @@
 ---
 id: zai
 name: z.AI
-company: Z.AI
+company: z.AI
 description: Multimodal AI code generation with GLM models and agentic programming support
 website: https://z.ai
 hasIDEExtension: true
@@ -20,7 +20,6 @@ language:
   - Java
   - C++
   - Go
-  - Chinese
 features:
   - Code generation
   - Agentic programming
@@ -42,7 +41,7 @@ z.AI is a multimodal AI code generation tool powered by GLM models that provides
 - **Dual Operation Modes**: Complex reasoning mode and rapid response mode
 - **Large Context Length**: Up to 128K tokens for sophisticated context tracking
 - **Multi-language Support**: Handles code and writing in English, Chinese, and more
-- **IDE Integration**: Compatible with Claude Code, Cursor, Cline, OpenCode, and Kilo Code
+- **IDE Integration**: Compatible with Claude Code, Cursor, Cline, and OpenCode
 
 ## Pricing
 

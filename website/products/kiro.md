@@ -7,7 +7,7 @@ website: https://kiro.dev
 hasIDEExtension: true
 supportedIDEs:
   - Kiro (Standalone)
-  - VS Code extensions supported
+  - VS Code
 pricing: Freemium
 language:
   - Python

@@ -34,7 +34,7 @@ Google Anti-gravity is the first agent-first AI-powered IDE designed to transfor
 
 - **Agent-Based Workflow**: Autonomous agents generate, refactor, review, test, and automate browser and terminal tasks
 - **Multi-Agent Management**: Orchestrate multiple agents simultaneously via dedicated Manager View for complex workflows
-- **Model Flexibility**: Support for Gemini 3 Pro, Claude Sonnet 4.5, and GPT-OSS models
+- **Model Flexibility**: Support for Gemini 2.0 Pro, Claude 3.5 Sonnet, and OpenAI GPT models
 - **End-to-End Automation**: Agents directly access editor, terminal, and browser for autonomous implementation
 - **Artifact Generation**: Produces verifiable artifacts including task lists, plans, screenshots, code diffs, and browser logs
 - **Continuous Learning**: Agents build knowledge base from past sessions to improve future collaboration
@@ -43,6 +43,6 @@ Google Anti-gravity is the first agent-first AI-powered IDE designed to transfor
 
 ## Pricing
 
-Anti-gravity is currently available for **free** in public preview with generous rate limits for Gemini 3 Pro and multi-agent orchestration. No paid tier has been announced yet.
+Anti-gravity is currently available for **free** in public preview with generous rate limits for Gemini 2.0 Pro and multi-agent orchestration. No paid tier has been announced yet.
 
 This makes it a compelling alternative to paid competitors like Cursor ($20/month) and Windsurf ($15/month), offering unique features like browser automation and verifiable artifact generation at no cost.
