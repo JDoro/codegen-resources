@@ -11,4 +11,5 @@ export interface Product {
   company: string;
   content?: string;
   slug?: string;
+  lastModified?: string;
 }

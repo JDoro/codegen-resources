@@ -109,6 +109,11 @@ html[data-theme='dark'] .badgePaid {
   text-decoration: underline;
 }
 
+.lastModified {
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.95rem;
+}
+
 .section {
   margin-bottom: 2.5rem;
 }

@@ -55,6 +55,21 @@ export default function ProductPage({ product }: ProductPageProps): ReactNode {
                 {product.website}
               </a>
             </div>
+            
+            {product.lastModified && (
+              <div className={styles.metadataItem}>
+                <span className={styles.metadataLabel}>Last Modified:</span>
+                <span className={styles.lastModified}>
+                  {new Date(product.lastModified).toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                  })}
+                </span>
+              </div>
+            )}
           </div>
           
           <div className={styles.section}>
