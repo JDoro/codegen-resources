@@ -60,7 +60,7 @@ export default function ProductPage({ product }: ProductPageProps): ReactNode {
               <div className={styles.metadataItem}>
                 <span className={styles.metadataLabel}>Last Modified:</span>
                 <span className={styles.lastModified}>
-                  {new Date(product.lastModified).toLocaleString('en-US', {
+                  {new Date(product.lastModified).toLocaleString(undefined, {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric',
