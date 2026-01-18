@@ -34,10 +34,15 @@ module.exports = function productsLoaderPlugin(context, options) {
           continue;
         }
         
+        // Get file modification time
+        const stats = fs.statSync(filePath);
+        const lastModified = stats.mtime.toISOString();
+        
         products.push({
           ...data,
           content,
-          slug: file.replace('.md', '')
+          slug: file.replace('.md', ''),
+          lastModified
         });
       }
       

@@ -10,6 +10,19 @@ interface ProductPageProps {
   product: Product;
 }
 
+/**
+ * Formats a date string to a localized, human-readable format
+ */
+function formatLastModified(dateString: string): string {
+  return new Date(dateString).toLocaleString(undefined, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+}
+
 export default function ProductPage({ product }: ProductPageProps): ReactNode {
   
   if (!product) {
@@ -55,6 +68,15 @@ export default function ProductPage({ product }: ProductPageProps): ReactNode {
                 {product.website}
               </a>
             </div>
+
+            {product.lastModified && (
+              <div className={styles.metadataItem}>
+                <span className={styles.metadataLabel}>Last Modified:</span>
+                <span className={styles.lastModified}>
+                  {formatLastModified(product.lastModified)}
+                </span>
+              </div>
+            )}
           </div>
           
           <div className={styles.section}>
